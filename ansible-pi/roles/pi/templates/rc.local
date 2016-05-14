@@ -1,0 +1,35 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+echo "test" > {{log_dir}}/test.log
+python -c "print 'test'" > {{log_dir}}/test_python.log
+python {{src_dir}}/pi_utilities/test.py
+export PYTHONPATH={{src_dir}}:$PYTHONPATH
+printenv > {{log_dir}}/env.log
+# use occi to reconfigure the wifi
+sudo occi > {{log_dir}}/occi.log 2> {{log_dir}}/occi.error
+# try to connect to the internet and announce ip address
+python {{src_dir}}/pi_utilities/announce_ip.py > {{log_dir}}/announce.log 2> {{log_dir}}/announce.error
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+  echo "$_IP" > {{log_dir}}/ip.log
+fi
+
+# at this point we are connected to the internet, let's start the twitter app
+python {{src_dir}}/pi_utilities/iw.py > {{log_dir}}/iw.log 2> {{log_dir}}/iw.error
+
+
+exit 0

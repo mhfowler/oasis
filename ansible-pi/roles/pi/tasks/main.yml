@@ -1,0 +1,54 @@
+---
+- name: 'Configure WIFI'
+  copy: src=secret_files/wpa_supplicant.conf dest=/etc/wpa_supplicant/wpa_supplicant.conf mode=0600
+
+#- name: 'Update APT package cache'
+#  action: apt update_cache=yes
+
+#- name: 'Upgrade APT to the latest packages'
+#  action: apt upgrade=safe
+
+- name: 'Ensure log directory'
+  action: file dest={{log_dir}} state=directory mode=777
+
+- name: 'ensure .ssh directory'
+  action: file dest=/root/.ssh/ state=directory mode=770
+
+- name: 'copy over ssh keys for deploy purposes'
+  action: copy src={{item.from}} dest={{item.to}} mode={{item.mode}}
+  with_items:
+      - { from: 'secret_files/deploy_rsa.pub', to: '/root/.ssh/id_rsa.pub', mode: '0644' }
+      - { from: 'secret_files/deploy_rsa', to: '/root/.ssh/id_rsa', mode: '0600' }
+
+- name: 'Deploy code from git'
+  git: repo={{repo_url}} dest={{src_dir}} remote={{repo_remote}} version={{repo_branch}} accept_hostkey=yes
+  tags: code
+
+- name: 'Ensure secret_files directory'
+  action: file dest={{src_dir}}/ansible-pi/secret_files state=directory
+
+- name: 'install python requirements'
+  action: pip requirements={{src_dir}}/requirements.txt state=present
+
+- name: 'Copy secret.json file'
+  copy: src=secret_files/secret.json dest={{src_dir}}/ansible-pi/secret_files/secret.json
+
+- name: 'Copy rc.local'
+  action: template src=templates/rc.local dest=/etc/rc.local
+
+- name: 'Copy etc/network/intefaces'
+  action: template src=templates/interfaces dest=/etc/network/interfaces
+
+- name: 'Copy cmdline.txt'
+  action: template src=templates/cmdline.txt dest=/boot/cmdline.txt
+
+- name: 'install printer requirements'
+  action: apt pkg=$item state=installed
+  with_items:
+    - python-serial
+    - python-imaging
+    - python-unidecode
+
+#- name: 'Reboot'
+#  command: /sbin/reboot
+
