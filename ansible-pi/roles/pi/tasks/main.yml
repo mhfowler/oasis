@@ -42,12 +42,9 @@
 - name: 'Copy cmdline.txt'
   action: template src=templates/cmdline.txt dest=/boot/cmdline.txt
 
-- name: 'install printer requirements'
-  action: apt pkg=$item state=installed
-  with_items:
-    - python-serial
-    - python-imaging
-    - python-unidecode
+# https://www.npmjs.com/package/ngrok
+- name: Install packages based on package.json.
+  npm: path={{src_dir}}
 
 #- name: 'Reboot'
 #  command: /sbin/reboot
