@@ -58,6 +58,7 @@
 # https://www.npmjs.com/package/ngrok
 - name: Install packages based on package.json.
   npm: path={{src_dir}}
+  tags: code
 
 
 # install ytalk
@@ -70,6 +71,10 @@
 # copy over inted.conf
 - name: 'Copy inetd.conf'
   action: template src=templates/inetd.conf dest=/etc/inetd.conf
+
+
+- name: 'crontab to add new users'
+  cron: name="add new users" minute="*/2" job="node {{src_dir}}/js/create_new_users.js"
 
 #- name: 'Reboot'
 #  command: /sbin/reboot
