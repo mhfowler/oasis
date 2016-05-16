@@ -59,6 +59,13 @@
 - name: Install packages based on package.json.
   npm: path={{src_dir}}
 
+
+# install ytalk
+- name: 'install node'
+  action: apt pkg=$item state=installed
+  with_items:
+    - ytalk
+
 #- name: 'Reboot'
 #  command: /sbin/reboot
 
