@@ -1,6 +1,6 @@
 app_name: hello_pi
-repo_url: git@github.com:mhfowler/ansible-pi.git
+repo_url: git@github.com:mhfowler/oasis.git
 repo_remote: origin
 repo_branch: master
-src_dir: /srv/infinitewishing
+src_dir: /srv/oasis
 log_dir: /srv/log
