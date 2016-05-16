@@ -29,5 +29,6 @@ if [ "$_IP" ]; then
 fi
 
 # at this point we are connected to the internet, let's start OASIS
+node {{src_dir}}/js/ngrok_tcp_connect.js
 
 exit 0

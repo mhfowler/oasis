@@ -1,9 +1,26 @@
 var ngrok = require('ngrok');
+var util = require('util');
 var secrets = require('../ansible-pi/secret_files/secret.json');
+var Slack = require('slack-node');
 
 
-console.log('++ attempting to connect with ngrok: %s', secrets['NGROK_TOKEN']);
+apiToken = secrets['CITIGROUP_SLACKBOT_TOKEN'];
+slack = new Slack(apiToken);
 
+var send_slack_message = function(msg) {
+	console.log(msg);
+	slack.api('chat.postMessage', {
+		text: msg,
+		channel: '#oasis',
+		username: "oasis",
+		link_names: 1
+	}, function (err, response) {
+	});
+}
+
+// log console messages
+var console_msg = util.format('++ @channel attempting to connect with ngrok: %s', secrets['NGROK_TOKEN']);
+send_slack_message(console_msg);
 
 ngrok.connect({
 	proto: 'tcp', // http|tcp|tls
@@ -13,8 +30,7 @@ ngrok.connect({
 	//subdomain: 'alex', // reserved tunnel name https://alex.ngrok.io,
 	//authtoken: '12345' // your authtoken from ngrok.com
 }, function (err, url) {
-	console.log('++ ngrok connected');
-	  debugger;
-	console.log('++ error: %j', err);
-	console.log('++ url: %s', url);
+	send_slack_message('++ ngrok connected');
+	send_slack_message(util.format('++ error: %j', err));
+	send_slack_message(util.format('++ url: %s', url));
 });

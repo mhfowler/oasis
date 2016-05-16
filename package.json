@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "ngrok": "^2.1.8"
+    "ngrok": "^2.1.8",
+    "slack-node": "^0.2.0"
   },
   "devDependencies": {},
   "scripts": {
