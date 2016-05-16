@@ -46,6 +46,9 @@
 - name: 'Update Aptitude'
   apt: update_cache=yes cache_valid_time=3600
 
+- name: 'Install occi'
+  action: install_occi
+
 - name: 'install node'
   action: apt pkg=$item state=installed
   with_items:

@@ -1,0 +1,7 @@
+# this file goes in /boot/occidentalis.txt (you need to put it on the SD card yourself)
+# hostname for your Raspberry Pi:
+hostname=oasis
+
+# basic wireless networking options:
+wifi_ssid=NewSystem
+wifi_password=password
