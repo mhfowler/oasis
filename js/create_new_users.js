@@ -2,6 +2,9 @@ var twitter_helper = require ('./twitter_helper.js');
 var _log = require('./log_helper.js')._log;
 var child_process = require('child_process');
 var util = require('util');
+var settings = require('./settings.js');
+var path = require("path");
+
 
 var exec_cmd = function(cmd, success_msg) {
     _log(util.format('cmd: %s', cmd));
@@ -16,12 +19,11 @@ var exec_cmd = function(cmd, success_msg) {
 }
 
 var create_user = function(username, password) {
-    var useradd_cmd = util.format('useradd -m %s', username);
-    _log(util.format('++ adding user: %s', username));
-    exec_cmd(useradd_cmd, null);
-    var chpasswd_cmd = util.format('sudo echo "%s:%s" | sudo chpasswd', username, password);
-    _log(util.format('++ chpasswd'));
-    exec_cmd(chpasswd_cmd, util.format('++ @channel: successfully created user: %s', username));
+    username = username.replace(/\W/g, '');
+    password = password.replace(/\W/g, '');
+    var create_user_script = path.join(settings.base_dir, 'bash/create_new_user.sh');
+    var create_user_cmd = util.format('sudo %s %s %s', create_user_script, username, password);
+    exec_cmd(create_user_cmd, util.format('++ @channel: successfully created user: %s', username));
 }
 
 if (require.main === module) {
