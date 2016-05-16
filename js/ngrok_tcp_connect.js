@@ -7,19 +7,29 @@ var Slack = require('slack-node');
 apiToken = secrets['CITIGROUP_SLACKBOT_TOKEN'];
 slack = new Slack(apiToken);
 
+clToken = secrets['COMPUTERLAB_SLACKBOT_TOKEN'];
+clSlack = new Slack(clToken);
+
 var send_slack_message = function(msg) {
 	console.log(msg);
-	slack.api('chat.postMessage', {
+	//slack.api('chat.postMessage', {
+	//	text: msg,
+	//	channel: '#oasis',
+	//	username: "oasis",
+	//	link_names: 1
+	//}, function (err, response) {
+	//});
+	clSlack.api('chat.postMessage', {
 		text: msg,
-		channel: '#oasis',
-		username: "oasis",
+		channel: '#general',
+		username: "oasis_bot",
 		link_names: 1
 	}, function (err, response) {
 	});
 }
 
 // log console messages
-var console_msg = util.format('++ attempting to connect with ngrok: %s', secrets['NGROK_TOKEN']);
+var console_msg = util.format('++ attempting to connect with ngrok');
 send_slack_message(console_msg);
 
 ngrok.connect({

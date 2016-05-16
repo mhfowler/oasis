@@ -61,7 +61,7 @@
 
 
 # install ytalk
-- name: 'install node'
+- name: 'install ytalk'
   action: apt pkg=$item state=installed
   with_items:
     - ytalk

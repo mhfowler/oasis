@@ -12,6 +12,7 @@ def slack_notify_message(message, channel_id=None):
     :return: None
     """
     bot_token = SECRETS_DICT['CITIGROUP_SLACKBOT_TOKEN']
+    # bot_token = SECRETS_DICT['COMPUTERLAB_SLACKBOT_TOKEN']
     sc = SlackClient(bot_token)
 
     if not channel_id:
@@ -28,6 +29,7 @@ def list_channels():
     :return: None
     """
     bot_token = SECRETS_DICT['CITIGROUP_SLACKBOT_TOKEN']
+    # bot_token = SECRETS_DICT['COMPUTERLAB_SLACKBOT_TOKEN']
     sc = SlackClient(bot_token)
     channels = sc.api_call('channels.list')
     return channels
@@ -35,4 +37,4 @@ def list_channels():
 
 if __name__ == '__main__':
     channels = list_channels()
-    slack_notify_message('test message')
+    slack_notify_message('test message', channel_id=SECRETS_DICT['COMPUTERLAB_GENERAL_CHANNEL_ID'])
