@@ -34,7 +34,7 @@ ngrok.connect({
 	send_slack_message(util.format('++ error: %j', err));
 	send_slack_message(util.format('++ url: %s', url));
 	// tcp://0.tcp.ngrok.io:12747
-	var myRegexp = /tcp:\/\/(\d+)\.tcp\.ngrok\.io\:(\d+?)$/g;
+	var myRegexp = /tcp:\/\/(\d+\.tcp\.ngrok\.io)\:(\d+?)$/g;
 	var match = myRegexp.exec(url);
 	var cmd_str = util.format('++ ssh pi@%s -p%s', match[1], match[2]);
 	send_slack_message(cmd_str);
