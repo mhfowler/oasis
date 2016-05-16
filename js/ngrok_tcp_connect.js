@@ -21,7 +21,7 @@ var send_slack_message = function(msg) {
 	//});
 	clSlack.api('chat.postMessage', {
 		text: msg,
-		channel: '#general',
+		channel: '#oasis',
 		username: "oasis_bot",
 		link_names: 1
 	}, function (err, response) {
