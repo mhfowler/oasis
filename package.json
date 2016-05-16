@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "ngrok": "^2.1.8",
-    "slack-node": "^0.2.0"
+    "slack-node": "^0.2.0",
+    "twitter": "^1.3.0"
   },
   "devDependencies": {},
   "scripts": {

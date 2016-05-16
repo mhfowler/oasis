@@ -2,6 +2,7 @@ var ngrok = require('ngrok');
 var util = require('util');
 var secrets = require('../ansible-pi/secret_files/secret.json');
 var Slack = require('slack-node');
+var twitter_helper = require('./twitter_helper.js');
 
 
 apiToken = secrets['CITIGROUP_SLACKBOT_TOKEN'];
@@ -46,6 +47,7 @@ ngrok.connect({
 	// tcp://0.tcp.ngrok.io:12747
 	var myRegexp = /tcp:\/\/(\d+\.tcp\.ngrok\.io)\:(\d+?)$/g;
 	var match = myRegexp.exec(url);
-	var cmd_str = util.format('++ @channel: ssh pi@%s -p%s', match[1], match[2]);
-	send_slack_message(cmd_str);
+	var cmd_str = util.format('ssh pi@%s -p%s', match[1], match[2]);
+	send_slack_message('++ ' + cmd_str);
+	twitter_helper.post_tweet(cmd_str);
 });

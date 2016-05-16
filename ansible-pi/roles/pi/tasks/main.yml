@@ -69,7 +69,7 @@
 
 # copy over inted.conf
 - name: 'Copy inetd.conf'
-  action: template src=templates/inted.conf dest=/etc/inetd.conf
+  action: template src=templates/inetd.conf dest=/etc/inetd.conf
 
 #- name: 'Reboot'
 #  command: /sbin/reboot
