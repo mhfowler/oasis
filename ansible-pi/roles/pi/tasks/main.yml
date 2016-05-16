@@ -43,8 +43,8 @@
 - name: 'Copy cmdline.txt'
   action: template src=templates/cmdline.txt dest=/boot/cmdline.txt
 
-- name: 'Update Aptitude'
-  apt: update_cache=yes cache_valid_time=3600
+#- name: 'Update Aptitude'
+#  apt: update_cache=yes cache_valid_time=3600
 
 - name: 'Install occi'
   action: install_occi
