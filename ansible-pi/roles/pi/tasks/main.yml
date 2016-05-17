@@ -11,6 +11,9 @@
 - name: 'Ensure log directory'
   action: file dest={{log_dir}} state=directory mode=777
 
+- name: 'Ensure data directory'
+  action: file dest={{data_dir}} state=directory mode=770
+
 - name: 'ensure .ssh directory'
   action: file dest=/root/.ssh/ state=directory mode=770
 
@@ -21,7 +24,7 @@
       - { from: 'secret_files/deploy_rsa', to: '/root/.ssh/id_rsa', mode: '0600' }
 
 - name: 'Deploy code from git'
-  git: repo={{repo_url}} dest={{src_dir}} remote={{repo_remote}} version={{repo_branch}} accept_hostkey=yes
+  git: repo={{repo_url}} dest={{src_dir}} remote={{repo_remote}} version={{repo_branch}} accept_hostkey=yes force=yes
   tags: code
 
 - name: 'Ensure secret_files directory'
@@ -75,11 +78,9 @@
 
 - name: 'crontab to add new users'
   cron: name="add new users" minute="*/2" job="/usr/local/bin/node {{src_dir}}/js/create_new_users.js > {{log_dir}}/cron.log 2> {{log_dir}}/cron.error"
-  tags: code
 
 - name: 'make bash scripts executable'
   file: path={{src_dir}}/bash state=directory mode=0770 owner=root group=root recurse=yes
-  tags: code
 
 #- name: 'Reboot'
 #  command: /sbin/reboot

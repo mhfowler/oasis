@@ -4,3 +4,4 @@ repo_remote: origin
 repo_branch: master
 src_dir: /srv/oasis
 log_dir: /srv/log
+data_dir: /srv/data
