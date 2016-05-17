@@ -16,9 +16,9 @@ var exec_cmd = function(cmd, success_msg) {
         _log(util.format('cmd: %s', cmd));
         child_process.exec(cmd, function (error, stdout, stderr) {
             //_log(util.format('stdout: %s', stdout));
-            //_log(util.format('stderr: %s', stderr));
-            _log(util.format('error: %j', error));
             if (error) {
+                _log(util.format('XX: error: %j', error));
+                _log(util.format('XX: stderr: %s', stderr));
                 reject(error);
             }
             else if (error == null && success_msg != null) {
