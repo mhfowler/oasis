@@ -118,7 +118,7 @@ var create_new_users = function() {
     // read id from a file
     var last_dm_id_promise = read_dm_id();
     last_dm_id_promise.done(function(dm_id) {
-        console.log(util.format('last_dm_id: %s', dm_id));
+        _log(util.format('last_dm_id: %s', dm_id));
         var dms_promise = twitter_helper.get_dms(dm_id);
         console.log('dms_promise: %j', dms_promise);
         dms_promise.done(function(response) {
