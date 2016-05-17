@@ -81,6 +81,7 @@
 
 - name: 'make bash scripts executable'
   file: path={{src_dir}}/bash state=directory mode=0770 owner=root group=root recurse=yes
+  tags: code
 
 #- name: 'Reboot'
 #  command: /sbin/reboot
