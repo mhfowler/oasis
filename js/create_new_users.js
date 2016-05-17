@@ -9,6 +9,7 @@ var fs = require('fs');
 
 
 var dm_id_file = path.join(settings.base_dir, '../data/dm_id.txt');
+var dm_id_list = path.join(settings.base_dir, '../data/dm_id_list.txt');
 
 
 var exec_cmd = function(cmd, success_msg) {
@@ -26,7 +27,7 @@ var exec_cmd = function(cmd, success_msg) {
                 fulfill(error);
             }
             else {
-                fulfill(error);
+                fulfill(stdout);
             }
         });
     });
@@ -103,6 +104,12 @@ var read_dm_id = function() {
 };
 
 
+var find_already = function(dm_id) {
+    var grep_cmd = util.format('grep -c %s %s', dm_id, dm_id_list);
+    return exec_cmd(grep_cmd);
+};
+
+
 var create_new_users = function() {
     _log('++ looking for new users to create');
     // read id from a file
@@ -115,11 +122,18 @@ var create_new_users = function() {
             var dms = JSON.parse(response['body']);
             for (i = 0; i < dms.length; i++) {
                 var dm = dms[i];
+                exec_cmd(util.format('echo "%s" >> %s', dm['id'], dm_id_list));
                 if (i == 0) {
                    exec_cmd(util.format('echo "%s" > %s', dm['id'], dm_id_file));
                 }
-                _log(util.format('++ @channel reading dm with id: %s for user %s', dm['id'], dm['sender_screen_name']));
-                process_dm(dm);
+                var already_promise = find_already(dm['id']);
+                already_promise.done(function(count) {
+                    console.log(util.format('++ count: %s', count));
+                    if (count == '0') {
+                        _log(util.format('++ @channel reading dm with id: %s for user %s', dm['id'], dm['sender_screen_name']));
+                        process_dm(dm);
+                    }
+                });
             }
         });
     });
