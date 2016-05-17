@@ -26,6 +26,16 @@ var create_user = function(username, password) {
     exec_cmd(create_user_cmd, util.format('++ @channel: successfully created user: %s', username));
 }
 
+
+var create_new_users = function() {
+    _log('++ looking for new users to create');
+    var new_users = [];
+    for (i = 0; i < new_users.length; i++) {
+        var user_info = new_users[i];
+        create_user(user_info['username'], user_info['password']);
+    }
+}
+
 if (require.main === module) {
-    create_user('test_cron', 'passwordpassword');
+    create_new_users();
 }
