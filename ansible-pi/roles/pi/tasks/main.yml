@@ -61,7 +61,6 @@
 # https://www.npmjs.com/package/ngrok
 - name: Install packages based on package.json.
   npm: path={{src_dir}}
-  tags: code
 
 
 # install ytalk

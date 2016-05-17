@@ -42,7 +42,6 @@ def create_new_user(username, password):
         username=username,
         password=password
     )
-    cmd = 'ls'
     try:
         subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
         return username
