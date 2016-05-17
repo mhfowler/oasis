@@ -95,6 +95,7 @@ def process_dm(dm_text, dm_sender_screen_name, dm_id=''):
 
 
 def create_new_users():
+    slack_notify_message(message='++ looking for new users', channel_id='C19FPTANB')
     last_dm_id = get_last_dm_id()
     dms = tw.get_dms(since_id=last_dm_id)
     dms.sort(key=lambda dm: dm['id'])
@@ -117,3 +118,4 @@ def create_new_users():
 
 if __name__ == '__main__':
     create_new_users()
+    # process_dm(dm_text='username/password', dm_sender_screen_name='@someone')
