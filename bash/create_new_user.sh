@@ -10,5 +10,6 @@ PASSWORD=$2
 
 # give correct permission
 /bin/chgrp oasis /home/$USERNAME
-/bin/chown 640 /home/$USERNAME
+/bin/chown $USERNAME /home/$USERNAME
+/bin/chmod 777 /home/$USERNAME
 ln -s  /greetingroom /home/$USERNAME/greetingroom
