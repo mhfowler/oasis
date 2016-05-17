@@ -113,6 +113,7 @@ var create_new_users = function() {
         console.log('dms_promise: %j', dms_promise);
         dms_promise.done(function(response) {
             var dms = JSON.parse(response['body']);
+            dms.sort(function(dm){return dm['id']});
             for (i = 0; i < dms.length; i++) {
                 var dm = dms[i];
                 _log(util.format('++ @channel reading dm from: %s', dm['sender_screen_name']));
