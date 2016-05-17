@@ -83,6 +83,10 @@
 #  cron: name="add new users" state=absent
 #  tags: code
 
+- name: 'crontab for greeting room'
+  cron: name="greeting room" minute="*/1" job="{{src_dir}}/bash/greetingroom.sh"
+  tags: cron
+
 - name: 'make bash scripts executable'
   file: path={{src_dir}}/bash state=directory mode=0770 owner=root group=root recurse=yes
   tags: code
