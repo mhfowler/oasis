@@ -13,7 +13,7 @@ var dm_id_file = path.join(settings.base_dir, '../data/dm_id.txt');
 
 var exec_cmd = function(cmd, success_msg) {
     return new Promise(function (fulfill, reject) {
-        _log(util.format('cmd: %s', cmd));
+        _log(util.format('++ cmd: %s', cmd));
         child_process.exec(cmd, function (error, stdout, stderr) {
             //_log(util.format('stdout: %s', stdout));
             if (error) {
