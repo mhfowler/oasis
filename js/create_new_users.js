@@ -86,16 +86,6 @@ var process_dm = function(dm) {
     }
 };
 
-
-var save_dm_id = function(dm_id) {
-    fs.writeFile(dm_id_file, dm_id, function(err) {
-        if(err) {
-            return console.log(err);
-        }
-        console.log(util.format('++ saved dm_id: %s', dm_id));
-    });
-};
-
 var read_dm_id = function() {
     return new Promise(function (fulfill, reject) {
         if (fs.existsSync(dm_id_file)) {
@@ -126,8 +116,10 @@ var create_new_users = function() {
             for (i = 0; i < dms.length; i++) {
                 var dm = dms[i];
                 _log(util.format('++ @channel reading dm from: %s', dm['sender_screen_name']));
-                save_dm_id(dm['id']);
-                process_dm(dm);
+                var save_dm_id_promise = exec_cmd(util.format('echo "%s" > %s', dm['id'], dm_id_file));
+                save_dm_id_promise.done(function(res) {
+                    process_dm(dm);
+                });
             }
         });
     });
