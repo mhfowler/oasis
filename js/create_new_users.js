@@ -106,7 +106,17 @@ var read_dm_id = function() {
 
 var find_already = function(dm_id) {
     var grep_cmd = util.format('grep -c %s %s', dm_id, dm_id_list);
-    return exec_cmd(grep_cmd);
+    return new Promise(function (fulfill, reject) {
+        child_process.exec(cmd, function (error, stdout, stderr) {
+            //_log(util.format('stdout: %s', stdout));
+            if (error) {
+                fulfill(0);
+            }
+            else {
+                fulfill(stdout);
+            }
+        });
+    });
 };
 
 
