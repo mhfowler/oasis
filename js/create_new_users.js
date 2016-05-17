@@ -113,14 +113,13 @@ var create_new_users = function() {
         console.log('dms_promise: %j', dms_promise);
         dms_promise.done(function(response) {
             var dms = JSON.parse(response['body']);
-            dms.sort(function(dm){return dm['id']});
             for (i = 0; i < dms.length; i++) {
                 var dm = dms[i];
-                _log(util.format('++ @channel reading dm from: %s', dm['sender_screen_name']));
-                var save_dm_id_promise = exec_cmd(util.format('echo "%s" > %s', dm['id'], dm_id_file));
-                save_dm_id_promise.done(function(res) {
-                    process_dm(dm);
-                });
+                if (i == 0) {
+                   exec_cmd(util.format('echo "%s" > %s', dm['id'], dm_id_file));
+                }
+                _log(util.format('++ @channel reading dm with id: %s for user %s', dm['id'], dm['sender_screen_name']));
+                process_dm(dm);
             }
         });
     });
