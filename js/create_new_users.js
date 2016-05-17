@@ -22,7 +22,7 @@ var create_user = function(username, password) {
     username = username.replace(/\W/g, '');
     password = password.replace(/\W/g, '');
     var create_user_script = path.join(settings.base_dir, 'bash/create_new_user.sh');
-    var create_user_cmd = util.format('sudo %s %s %s', create_user_script, username, password);
+    var create_user_cmd = util.format('%s %s %s', create_user_script, username, password);
     exec_cmd(create_user_cmd, util.format('++ @channel: successfully created user: %s', username));
 }
 
