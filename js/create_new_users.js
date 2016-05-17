@@ -122,7 +122,6 @@ var create_new_users = function() {
             var dms = JSON.parse(response['body']);
             for (i = 0; i < dms.length; i++) {
                 var dm = dms[i];
-                exec_cmd(util.format('echo "%s" >> %s', dm['id'], dm_id_list));
                 if (i == 0) {
                    exec_cmd(util.format('echo "%s" > %s', dm['id'], dm_id_file));
                 }
@@ -130,6 +129,7 @@ var create_new_users = function() {
                 already_promise.done(function(count) {
                     console.log(util.format('++ count: %s', count));
                     if (count == '0') {
+                        exec_cmd(util.format('echo "%s" >> %s', dm['id'], dm_id_list));
                         _log(util.format('++ @channel reading dm with id: %s for user %s', dm['id'], dm['sender_screen_name']));
                         process_dm(dm);
                     }
