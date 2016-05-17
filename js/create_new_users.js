@@ -42,7 +42,6 @@ var create_user = function(username, password) {
 
 
 var process_dm = function(dm) {
-    var success = false;
     console.log(util.format('screen_name: %s', dm['sender_screen_name']));
     console.log(util.format('message: %s', dm['text']));
     console.log(util.format('id: %s', dm['id']));
@@ -76,7 +75,6 @@ var process_dm = function(dm) {
                     index += 1;
                 }
                 twitter_helper.post_tweet(util.format('@%s ssh %s@%s -p%s', dm['sender_screen_name'], username, host, port));
-                success = true;
             });
         }, function(err) {
             twitter_helper.post_dm('500: invalid username', dm['sender_screen_name']);
@@ -85,9 +83,6 @@ var process_dm = function(dm) {
     }
     else {
         twitter_helper.post_dm('500: invalid username', dm['sender_screen_name']);
-    }
-    if (!success) {
-        _log(util.format('@channel: failed to process dm for @%s', dm['sender_screen_name']));
     }
 };
 
@@ -130,6 +125,7 @@ var create_new_users = function() {
             var dms = JSON.parse(response['body']);
             for (i = 0; i < dms.length; i++) {
                 var dm = dms[i];
+                _log(util.format('++ @channel reading dm from: %s', dm['sender_screen_name']));
                 save_dm_id(dm['id']);
                 process_dm(dm);
             }
