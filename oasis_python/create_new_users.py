@@ -118,4 +118,3 @@ def create_new_users():
 
 if __name__ == '__main__':
     create_new_users()
-    # process_dm(dm_text='username/password', dm_sender_screen_name='@someone')
