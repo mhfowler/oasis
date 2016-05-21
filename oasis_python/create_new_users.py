@@ -86,6 +86,7 @@ def process_dm(dm_text, dm_sender_screen_name, dm_id=''):
         port=latest_dict['port']
     )
     tw.post_tweet(tweet_text)
+    tw.send_dm(msg=tweet_text, recipient=dm_sender_screen_name)
     slack_notify_message('++ @channel: created user {username} for screen name '
                          '@{screen_name} based on dm {dm_id}'.format(
         username=username,

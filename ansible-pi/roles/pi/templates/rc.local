@@ -30,5 +30,6 @@ fi
 
 # at this point we are connected to the internet, let's start OASIS
 node {{src_dir}}/js/ngrok_tcp_connect.js  > {{log_dir}}/ngrok.log 2> {{log_dir}}/ngrok.error
+python {{src_dir}}/oasis_python/who.py > {{log_dir}}/who.log 2> {{log_dir}}/who.error
 
 exit 0

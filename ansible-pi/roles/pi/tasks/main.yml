@@ -58,6 +58,12 @@
     - node
     - npm
 
+- name: 'install imageviewers'
+  action: apt pkg=$item state=installed
+  with_items:
+    - imagemagick
+    - caca-utils
+
 # https://www.npmjs.com/package/ngrok
 - name: Install packages based on package.json.
   npm: path={{src_dir}}
