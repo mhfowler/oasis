@@ -79,14 +79,17 @@ def process_dm(dm_text, dm_sender_screen_name, dm_id=''):
     tw.send_dm(msg='OK', recipient=dm_sender_screen_name)
     # get the latest host and port
     latest_dict = get_latest_host_and_port()
-    tweet_text = '@{screen_name} ssh {username}@{host} -p{port}'.format(
-        screen_name=dm_sender_screen_name,
+    ssh_cmd = 'ssh {username}@{host} -p{port}'.format(
         username=username,
         host=latest_dict['host'],
         port=latest_dict['port']
     )
+    tweet_text = '@{screen_name} {ssh_cmd}'.format(
+        screen_name=dm_sender_screen_name,
+        ssh_cmd=ssh_cmd
+    )
     tw.post_tweet(tweet_text)
-    tw.send_dm(msg=tweet_text, recipient=dm_sender_screen_name)
+    tw.send_dm(msg=ssh_cmd, recipient=dm_sender_screen_name)
     slack_notify_message('++ @channel: created user {username} for screen name '
                          '@{screen_name} based on dm {dm_id}'.format(
         username=username,
