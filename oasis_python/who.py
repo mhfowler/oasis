@@ -34,7 +34,7 @@ def check_for_new_who():
                     user=user
                 ))
         previous_users = current_users
-        time.sleep(60)
+        time.sleep(10)
 
 
 if __name__ == '__main__':
