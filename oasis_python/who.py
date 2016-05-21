@@ -30,7 +30,7 @@ def check_for_new_who():
         new_users = filter(lambda user: user not in previous_users, current_users)
         if new_users:
             for user in new_users:
-                slack_notify_message('++ @channel: <user> just logged into oasis'.format(
+                slack_notify_message('++ @channel: {user} just logged into oasis'.format(
                     user=user
                 ))
         previous_users = current_users

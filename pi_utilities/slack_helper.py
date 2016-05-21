@@ -16,7 +16,7 @@ def slack_notify_message(message, channel_id=None):
     sc = SlackClient(bot_token)
 
     if not channel_id:
-        channel_id = 'C0XL6UBA6'
+        channel_id = 'C193UMR0V'
 
     print message
     sc.api_call('chat.postMessage', channel=channel_id,
