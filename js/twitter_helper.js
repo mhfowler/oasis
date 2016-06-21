@@ -53,7 +53,7 @@ exports.get_dms = function(since_id) {
 exports.get_timeline = function() {
     var params = {
         exclude_replies: true,
-        screen_name: 'ss022001',
+        screen_name: 'terminalvr',
         count: 100
     };
     return new Promise(function (fulfill, reject) {

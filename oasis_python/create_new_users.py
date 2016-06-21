@@ -17,7 +17,7 @@ tw = TwitterHelper(access_token_key=SECRETS_DICT['TWITTER_ACCESS_TOKEN_KEY'],
 
 # constants
 DM_FILE_PATH = os.path.abspath(os.path.join(PROJECT_PATH, '../data/dm_id.txt'))
-BOT_SCREEN_NAME = 'ss022001'
+BOT_SCREEN_NAME = 'terminalvr'
 
 
 def get_last_dm_id():
