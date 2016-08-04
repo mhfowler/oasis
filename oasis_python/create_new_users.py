@@ -51,8 +51,11 @@ def create_new_user(username, password):
 
 
 def get_latest_host_and_port():
-    tweets = tw.get_latest_tweets(screen_name=BOT_SCREEN_NAME, count=20)
-    tweets.sort(key=lambda tweet: tweet['id'], reverse=True)
+    # tweets = tw.get_latest_tweets(screen_name=BOT_SCREEN_NAME, count=100)
+    # tweets.sort(key=lambda tweet: tweet['id'], reverse=True)
+    tweets = [{
+        'text': 'ssh pi@0.tcp.ngrok.io -p12447'
+    }]
     for tweet in tweets:
         tweet_match = re.match('ssh \S+@(\S+) -p(\S+)', tweet['text'])
         if tweet_match:
