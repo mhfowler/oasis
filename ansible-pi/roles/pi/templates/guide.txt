@@ -1,0 +1,35 @@
+## welcome to the oasis commune
+
+it's a small pi we're living in here so there's not a ton of space but could be a good place to settle down once global warming sends the human race to live underground
+
+feel free to sign the guestbook, roam the paths, and leave files of your own to help make this pi feel a little more like home
+
+
+## getting around
+
+you can navigate around oasis using the following commands
+to run each command, type the command, and then press enter
+
+commands:
+look (how to look around)
+move <name of folder> (how to move into a room)
+back (how to move backwards out of a room)
+see <name of file> (how to see a file)
+
+
+you can also use any standard terminal command (cd, ls, cat, etc.)
+
+to edit files you will need to use vim. vim is complicated for beginners, but this might help:
+vim <filename> (to open a file in vim)
+press i to enter insert mode
+… type what you need
+press esc to exit insert mode
+press “:w” then enter, to save your changes
+press “:q” then enter, to quit vim
+
+
+if you get lost at any point, try one of these commands:
+guide (brings up this guide)
+map (brings up a map of oasis)
+commands (just brings up a list of helpful commands)
+

@@ -43,3 +43,6 @@ function mycd() {
 
 # aliases
 alias cd="mycd"
+
+# print out prompt to type guide
+cat /srv/oasis/ansible-pi/roles/pi/templates/guide_prompt.txt

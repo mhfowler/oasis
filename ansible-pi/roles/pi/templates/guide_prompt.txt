@@ -1,5 +1,2 @@
-***********************
-for help navigating
-type guide
-and then press enter
-***********************
+*********************************
+* for help navigating, type guide and then press enter
