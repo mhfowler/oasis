@@ -41,6 +41,11 @@ function mycd() {
   /srv/oasis/pi_utilities/runme.sh
 }
 
+function wherefun() {
+        WHERE=${PWD/\/home\/swim/\~}
+        echo "You are currently in "$WHERE
+}
+
 TEMPLATES=/srv/oasis/ansible-pi/roles/pi/templates/
 # aliases
 alias cd="mycd"
@@ -51,7 +56,7 @@ alias see="cat"
 alias back="cd .."
 alias move="mycd"
 alias look="ls"
-alias where="echo 'You are currently in '$(pwd)"
+alias where="wherefun"
 
 # print out prompt to type guide
 cat $TEMPLATES/guide_prompt.txt
