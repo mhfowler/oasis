@@ -41,8 +41,10 @@ function mycd() {
   /srv/oasis/pi_utilities/runme.sh
 }
 
+TEMPLATES=/srv/oasis/ansible-pi/roles/pi/templates/
 # aliases
 alias cd="mycd"
+alias guide="cat $TEMPLATES/guide.txt"
 
 # print out prompt to type guide
-cat /srv/oasis/ansible-pi/roles/pi/templates/guide_prompt.txt
+cat $TEMPLATES/guide_prompt.txt
