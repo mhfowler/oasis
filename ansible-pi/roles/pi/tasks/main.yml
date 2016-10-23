@@ -80,6 +80,10 @@
 - name: 'Copy inetd.conf'
   action: template src=templates/inetd.conf dest=/etc/inetd.conf
 
+  # copy over /etc/profile
+- name: 'Copy profile'
+  action: template src=templates/profile dest=/etc/profile
+
 
 - name: 'crontab to add new users'
   cron: name="add new users" minute="*/1" job="export PYTHONPATH={{src_dir}}:$PYTHONPATH && /usr/bin/python {{src_dir}}/oasis_python/create_new_users.py > {{log_dir}}/cron.log 2> {{log_dir}}/cron.error"

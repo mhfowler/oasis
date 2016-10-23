@@ -24,8 +24,8 @@ vim <filename> (to open a file in vim)
 press i to enter insert mode
 … type what you need
 press esc to exit insert mode
-press “:w” then enter, to save your changes
-press “:q” then enter, to quit vim
+press ":w" then enter, to save your changes
+press ":q" then enter, to quit vim
 
 
 if you get lost at any point, try one of these commands:
