@@ -1,5 +1,5 @@
-commands:
 look (how to look around)
 move <name of folder> (how to move into a room)
 back (how to move backwards out of a room)
 see <name of file> (how to see a file)
+where (to see what folder you are in)

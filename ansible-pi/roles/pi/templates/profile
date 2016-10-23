@@ -45,12 +45,13 @@ TEMPLATES=/srv/oasis/ansible-pi/roles/pi/templates/
 # aliases
 alias cd="mycd"
 alias guide="cat $TEMPLATES/guide.txt"
-alias map="tree /greetingroom -d"
+alias map="tree /greetingroom -d";
 alias commands="cat $TEMPLATES/commands.txt"
 alias see="cat"
 alias back="cd .."
 alias move="mycd"
 alias look="ls"
+alias where="echo 'You are currently in '$(pwd)"
 
 # print out prompt to type guide
 cat $TEMPLATES/guide_prompt.txt
