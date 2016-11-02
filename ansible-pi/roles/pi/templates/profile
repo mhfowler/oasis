@@ -57,6 +57,7 @@ alias back="cd .."
 alias move="mycd"
 alias look="ls"
 alias where="wherefun"
+alias home="cd ~"
 
 # print out prompt to type guide
 cat $TEMPLATES/guide_prompt.txt
