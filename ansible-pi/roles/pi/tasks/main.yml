@@ -106,6 +106,10 @@
   file: path={{src_dir}}/bash state=directory mode=0770 owner=root group=root recurse=yes
   tags: code
 
+- name: 'make gallery scripts executable by oasis group'
+  file: path={{src_dir}}/bash/gallery state=directory mode=0770 owner=root group=oasis recurse=yes
+  tags: code
+
 #- name: 'Reboot'
 #  command: /sbin/reboot
 
