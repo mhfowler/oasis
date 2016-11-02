@@ -47,7 +47,7 @@ ngrok.connect({
 	// tcp://0.tcp.ngrok.io:12747
 	var myRegexp = /tcp:\/\/(\d+\.tcp\.ngrok\.io)\:(\d+?)$/g;
 	var match = myRegexp.exec(url);
-	var cmd_str = util.format('ssh pi@%s -p%s', match[1], match[2]);
+	var cmd_str = util.format('ssh swim@%s -p%s', match[1], match[2]);
 	send_slack_message('++ ' + cmd_str);
 	twitter_helper.post_tweet(cmd_str);
 });

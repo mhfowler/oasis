@@ -46,6 +46,10 @@
 - name: 'Copy cmdline.txt'
   action: template src=templates/cmdline.txt dest=/boot/cmdline.txt
 
+- name: 'Copy motd'
+  action: template src=templates/motd dest=/etc/motd
+  tags: code
+
 #- name: 'Update Aptitude'
 #  apt: update_cache=yes cache_valid_time=3600
 
@@ -83,6 +87,7 @@
   # copy over /etc/profile
 - name: 'Copy profile'
   action: template src=templates/profile dest=/etc/profile
+  tags: code
 
 
 - name: 'crontab to add new users'
