@@ -57,7 +57,7 @@ alias back="cd .."
 alias move="mycd"
 alias look="ls"
 alias where="wherefun"
-alias intro="cd ~; cat $TEMPLATES/guide.txt"
+alias intro="cd ~; cat /etc/motd; cat $TEMPLATES/guide_prompt.txt"
 
 # print out prompt to type guide
 cat $TEMPLATES/guide_prompt.txt
