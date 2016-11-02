@@ -11,12 +11,11 @@ you can navigate around oasis using the following commands
 to run each command, type the command, and then press enter
 
 commands:
-look (how to look around) or type ls
-move <name of folder> (how to move into a room) or type cd
-back (how to move backwards out of a room) or type cd ..
-see <name of file> (how to see a file) or type cat
-where (to see what folder you are in) or type pwd
-
+look (how to look around, aka ls)
+move <name of folder> (how to move into a room, aka cd)
+back (how to move backwards out of a room, aka cd ..)
+see <name of file> (how to see a file, aka cat)
+where (to see what folder you are in, aka pwd)
 
 you can also use any standard terminal command (cd, ls, cat, etc.)
 
