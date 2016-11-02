@@ -37,8 +37,8 @@ fi
 function mycd() {
   A=$1
   cd "$A"
-  /srv/oasis/pi_utilities/readme.sh
-  /srv/oasis/pi_utilities/runme.sh
+  /srv/oasis/bash/readme.sh
+  /srv/oasis/bash/runme.sh
 }
 
 function wherefun() {
