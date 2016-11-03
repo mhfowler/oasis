@@ -7,7 +7,7 @@ feel free to sign the guestbook, roam the paths, and leave files of your own to 
 
 ## getting around
 
-you can navigate around oasis using the following commands
+you can navigate oasis using terminal commands or the aliases below.
 to run each command, type the command, and then press enter
 
 commands:
@@ -17,7 +17,6 @@ back (how to move backwards out of a room, aka cd ..)
 see <name of file> (how to see a file, aka cat)
 where (to see what folder you are in, aka pwd)
 
-you can also use any standard terminal command (cd, ls, cat, etc.)
 
 to edit files you will need to use vim. vim is complicated for beginners, but this might help:
 vim <filename> (to open a file in vim)
